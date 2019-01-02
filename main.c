@@ -13,7 +13,7 @@ int my_str_isnum(char const *str)
     str++;
   while (*str)
     {
-      if (*str < '0' || '9' < *str)
+    if (*str < '0' || '9' < *str)
     return (0);
       str++;
     }
@@ -47,7 +47,7 @@ int main(int ac, char **av)
     float b_calc;
     float c_calc;
 
-    if (parameter < 0 || parameter > 360)
+    if (parameter < 0 || parameter >= 360)
         exit (84);
 
     while (i != 9) {
@@ -87,16 +87,15 @@ int main(int ac, char **av)
 
     delta = pow(b_calc, 2) - (4 * a_calc * c_calc);
 
-    /*if (delta <= 0 && deter == 2)
-        printf("Point infinit");
-        printf("Cone with a %d degree angle\n", parameter);
-        printf("Line passing throught the point (%d, %d, %d) and parallel to the vector (%d, %d, %d)\n", argv2, argv3, argv4, argv5, argv6, argv7);
-*/
-    if (delta == 0) {
+
+    if (a_calc == 0 && b_calc == 0 && c_calc == 0)
+        printf("There is an infinite number of intersection points.\n");
+    else if (delta == 0) {
         printf("1 intersection point:\n");
         racine_1 = -b_calc / (2 * a_calc);
         printf("(%.3f, %.3f, %.3f)\n", argv2 + racine_1 * argv5, argv3 + racine_1 * argv6, argv4 + racine_1 * argv7);
     }
+
     else if (delta < 0)
         printf("No intersection point.\n");
 
